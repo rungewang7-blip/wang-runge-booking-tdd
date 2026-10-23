@@ -4,7 +4,7 @@ import java.time.Duration;
 public final class TimeSlot {
     private final LocalDateTime start;
     private final LocalDateTime end;
-    
+
     public TimeSlot(LocalDateTime start, LocalDateTime end) {
          if (start == null) {
             throw new IllegalArgumentException("start must not be null");
@@ -22,6 +22,6 @@ public final class TimeSlot {
     return Duration.between(start, end);
     }
     public boolean overlaps(TimeSlot other) {
-        return !(this.end.isBefore(other.start) || other.end.isBefore(this.start));
+        return false;
     }
 }
