@@ -32,7 +32,11 @@ public class BookingService {
         if (slot.duration().compareTo(MAX_SLOT) > 0) {
             throw new IllegalArgumentException();
         }
-
+        for (Booking existing : bookings.findByRoom(roomId)) {
+            if (existing.getSlot().overlaps(slot)) {
+                throw new IllegalStateException();
+            }
+        }
         Booking booking = new Booking(userId, roomId, slot);
         bookings.save(booking);
         return booking;
