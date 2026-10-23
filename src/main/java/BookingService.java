@@ -21,7 +21,9 @@ public class BookingService {
 
     /** Book a room for a user. Returns the new booking. */
     public Booking book(String userId, String roomId, TimeSlot slot) {
-        throw new UnsupportedOperationException("TODO: implement using TDD");
+        Booking booking = new Booking(userId, roomId, slot);
+        bookings.save(booking);
+        return booking;
     }
 
     /** Cancel a user's booking. */
@@ -29,7 +31,6 @@ public class BookingService {
         throw new UnsupportedOperationException("TODO: implement using TDD");
     }
 
-    /** A user's bookings, earliest first. */
     public List<Booking> bookingsFor(String userId) {
         throw new UnsupportedOperationException("TODO: implement using TDD");
     }
