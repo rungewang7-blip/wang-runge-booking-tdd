@@ -37,6 +37,11 @@ public class BookingService {
                 throw new IllegalStateException();
             }
         }
+        for (Booking existing : bookings.findByUser(userId)) {
+            if (existing.getSlot().overlaps(slot)) {
+                throw new IllegalStateException();
+            }
+        }
         Booking booking = new Booking(userId, roomId, slot);
         bookings.save(booking);
         return booking;
@@ -44,7 +49,13 @@ public class BookingService {
 
     /** Cancel a user's booking. */
     public void cancel(String userId, String roomId, TimeSlot slot) {
-        throw new UnsupportedOperationException("TODO: implement using TDD");
+        Booking booking = new Booking(userId, roomId, slot);
+
+        if (!bookings.findByUser(userId).contains(booking)) {
+            throw new IllegalArgumentException();
+        }
+
+        bookings.delete(booking);
     }
 
     public List<Booking> bookingsFor(String userId) {
