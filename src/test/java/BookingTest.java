@@ -12,20 +12,20 @@ class BookingTest {
         );
 
         Booking booking = new Booking("alice", "R1", slot);
-
         assertEquals("alice", booking.getUserId());
     }
+
     @Test
     void bookingStoresRoomId() {
         TimeSlot slot = new TimeSlot(
             LocalDateTime.of(2027, 1, 11, 10, 0),
             LocalDateTime.of(2027, 1, 11, 11, 0)
-       );
+        );
 
         Booking booking = new Booking("alice", "R1", slot);
-
         assertEquals("R1", booking.getRoomId());
-}
+    }
+
     @Test
     void bookingStoresSlot() {
         TimeSlot slot = new TimeSlot(
@@ -34,9 +34,9 @@ class BookingTest {
         );
 
         Booking booking = new Booking("alice", "R1", slot);
-
         assertEquals(slot, booking.getSlot());
     }
+
     @Test
     void bookingsWithSameDetailsAreEqual() {
         TimeSlot slot1 = new TimeSlot(
@@ -52,6 +52,6 @@ class BookingTest {
         Booking booking1 = new Booking("alice", "R1", slot1);
         Booking booking2 = new Booking("alice", "R1", slot2);
 
-       assertEquals(booking1, booking2);
+        assertEquals(booking1, booking2);
     }
 }
