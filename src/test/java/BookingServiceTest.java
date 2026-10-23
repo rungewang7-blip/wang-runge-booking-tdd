@@ -58,5 +58,12 @@ class BookingServiceTest {
             IllegalArgumentException.class,
             () -> service.book("alice", "R1", slot(8, 9))
         );
-}
+    }
+    @Test
+    void slotMayLastAtMostMaxSlot() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> service.book("alice", "R1", slot(10, 14))
+        );
+    }
 }
