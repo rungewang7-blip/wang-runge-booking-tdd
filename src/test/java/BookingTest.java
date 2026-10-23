@@ -37,4 +37,21 @@ class BookingTest {
 
         assertEquals(slot, booking.getSlot());
     }
+    @Test
+    void bookingsWithSameDetailsAreEqual() {
+        TimeSlot slot1 = new TimeSlot(
+            LocalDateTime.of(2027, 1, 11, 10, 0),
+            LocalDateTime.of(2027, 1, 11, 11, 0)
+        );
+
+        TimeSlot slot2 = new TimeSlot(
+            LocalDateTime.of(2027, 1, 11, 10, 0),
+            LocalDateTime.of(2027, 1, 11, 11, 0)
+        );
+
+        Booking booking1 = new Booking("alice", "R1", slot1);
+        Booking booking2 = new Booking("alice", "R1", slot2);
+
+       assertEquals(booking1, booking2);
+    }
 }
