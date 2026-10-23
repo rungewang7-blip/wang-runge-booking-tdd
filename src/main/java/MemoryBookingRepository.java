@@ -1,20 +1,25 @@
 import java.util.*;
 
-class MemoryRoomRepository implements IRoomRepository {
-    private final Map<String, Room> rooms = new HashMap<>();
+class MemoryBookingRepository implements IBookingRepository {
+    private final List<Booking> bookings = new ArrayList<>();
 
-    @Override
-    public Room findById(String id) {
-        return rooms.get(id);
+    @Override public void save(Booking booking) {
+        bookings.add(booking);
     }
 
-    @Override
-    public void save(Room room) {
-        rooms.put(room.getId(), room);
+    @Override public void delete(Booking booking) {
+        bookings.remove(booking);
     }
 
-    @Override
-    public List<Room> findAll() {
-        return new ArrayList<>(rooms.values());
+    @Override public List<Booking> findByRoom(String roomId) {
+        return bookings.stream()
+                .filter(b -> b.getRoomId().equals(roomId))
+                .toList();
+    }
+
+    @Override public List<Booking> findByUser(String userId) {
+        return bookings.stream()
+                .filter(b -> b.getUserId().equals(userId))
+                .toList();
     }
 }
