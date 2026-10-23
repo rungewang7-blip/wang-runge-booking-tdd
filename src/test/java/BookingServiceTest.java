@@ -52,4 +52,11 @@ class BookingServiceTest {
             () -> service.book("alice", "R9", slot(10, 11))
         );
     }
+    @Test
+    void slotMustBeInTheFuture() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> service.book("alice", "R1", slot(8, 9))
+        );
+}
 }
