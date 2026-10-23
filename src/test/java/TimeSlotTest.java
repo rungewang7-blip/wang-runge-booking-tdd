@@ -37,7 +37,22 @@ class TimeSlotTest {
     return new TimeSlot(LocalDateTime.of(2027, 1, 11, startHour, 0),
             LocalDateTime.of(2027, 1, 11, endHour, 0));
     }
-
+     @ParameterizedTest(name = "{0}-{1} vs {2}-{3} equal? {4}")
+    @CsvSource({
+        "10, 11, 10, 11, true",
+        "10, 11, 10, 12, false",
+        "10, 11, 11, 12, false",
+        "10, 12, 11, 12, false"
+    })
+    void equalityCases(int aStart, int aEnd, int bStart, int bEnd, boolean expected) {
+        TimeSlot s1 = slot(aStart, aEnd);
+        TimeSlot s2 = slot(bStart, bEnd);
+        assertEquals(expected, s1.equals(s2));
+        assertEquals(expected, s2.equals(s1)); 
+        if (expected) {
+            assertEquals(s1.hashCode(), s2.hashCode());
+        }
+    }
    @ParameterizedTest(name = "{0}-{1} vs {2}-{3} overlaps: {4}")
     @CsvSource({
             "10, 11, 11, 12, false",
