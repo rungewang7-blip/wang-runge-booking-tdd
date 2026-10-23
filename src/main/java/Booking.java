@@ -1,9 +1,11 @@
 public final class Booking {
 
     private final String userId;
+    private final String roomId;
 
     public Booking(String userId, String roomId, TimeSlot slot) {
         this.userId = userId;
+        this.roomId = roomId;
     }
 
     public String getUserId() {
@@ -11,7 +13,7 @@ public final class Booking {
     }
 
     public String getRoomId() {
-        return null;
+        return roomId;
     }
 
     public TimeSlot getSlot() {
