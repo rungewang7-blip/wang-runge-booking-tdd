@@ -124,4 +124,16 @@ class BookingServiceTest {
             booking
         );
     }
+    @Test
+    void touchingSlotsInSameRoomAreAllowed() {
+        service.book("alice", "R1", slot(10, 11));
+
+        Booking booking =
+            service.book("bob", "R1", slot(11, 12));
+
+        assertEquals(
+            new Booking("bob", "R1", slot(11, 12)),
+            booking
+        );
+    }
 }
