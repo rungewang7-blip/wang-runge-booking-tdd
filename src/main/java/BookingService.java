@@ -29,6 +29,9 @@ public class BookingService {
         if (!slot.getStart().isAfter(LocalDateTime.now(clock))) {
             throw new IllegalArgumentException();
         }
+        if (slot.duration().compareTo(MAX_SLOT) > 0) {
+            throw new IllegalArgumentException();
+        }
 
         Booking booking = new Booking(userId, roomId, slot);
         bookings.save(booking);
