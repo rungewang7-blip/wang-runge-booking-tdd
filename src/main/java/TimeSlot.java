@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.Duration;
+import java.util.Objects;
 
 public final class TimeSlot {
     private final LocalDateTime start;
@@ -25,4 +26,16 @@ public final class TimeSlot {
         return !((this.end.isBefore(other.start) || this.end.isEqual(other.start))
         || (other.end.isBefore(this.start) || other.end.isEqual(this.start)));
     }
+    @Override
+    public boolean equals(Object o) {
+       if (this == o) return true;
+       if (o == null || getClass() != o.getClass()) return false;
+       TimeSlot timeSlot = (TimeSlot) o;
+       return Objects.equals(start, timeSlot.start) && Objects.equals(end, timeSlot.end);
+    }
+
+   @Override
+   public int hashCode() {
+    return Objects.hash(start, end);
+   }
 }
