@@ -59,6 +59,9 @@ public class BookingService {
     }
 
     public List<Booking> bookingsFor(String userId) {
-        throw new UnsupportedOperationException("TODO: implement using TDD");
+        return bookings.findByUser(userId).stream()
+            .sorted((a, b) ->
+                a.getSlot().getStart().compareTo(b.getSlot().getStart()))
+            .toList();
     }
 }
