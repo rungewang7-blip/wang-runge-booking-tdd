@@ -22,18 +22,18 @@ public class BookingService {
     /** Book a room for a user. Returns the new booking. */
     public Booking book(String userId, String roomId, TimeSlot slot) {
 
-    if (rooms.findById(roomId) == null) {
-        throw new IllegalArgumentException();
-    }
+        if (rooms.findById(roomId) == null) {
+            throw new IllegalArgumentException();
+        }
 
-    if (!slot.getStart().isAfter(LocalDateTime.now(clock))) {
-        throw new IllegalArgumentException();
-    }
+        if (!slot.getStart().isAfter(LocalDateTime.now(clock))) {
+            throw new IllegalArgumentException();
+        }
 
-    Booking booking = new Booking(userId, roomId, slot);
-    bookings.save(booking);
-    return booking;
-}
+        Booking booking = new Booking(userId, roomId, slot);
+        bookings.save(booking);
+        return booking;
+    }
 
     /** Cancel a user's booking. */
     public void cancel(String userId, String roomId, TimeSlot slot) {
