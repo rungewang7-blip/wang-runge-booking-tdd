@@ -115,4 +115,13 @@ class BookingServiceTest {
         assertEquals(slot(10, 11), result.get(0).getSlot());
         assertEquals(slot(14, 15), result.get(1).getSlot());
     }
+    @Test
+    void slotOfExactlyThreeHoursIsAllowed() {
+        Booking booking = service.book("alice", "R1", slot(10, 13));
+
+        assertEquals(
+            new Booking("alice", "R1", slot(10, 13)),
+            booking
+        );
+    }
 }
