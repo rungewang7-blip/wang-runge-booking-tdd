@@ -22,6 +22,7 @@ public final class TimeSlot {
     return Duration.between(start, end);
     }
     public boolean overlaps(TimeSlot other) {
-        return false;
+        return !((this.end.isBefore(other.start) || this.end.isEqual(other.start))
+        || (other.end.isBefore(this.start) || other.end.isEqual(this.start)));
     }
 }
