@@ -45,4 +45,11 @@ class BookingServiceTest {
             booking
         );
     }
+    @Test
+    void bookingUnknownRoomIsRejected() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> service.book("alice", "R9", slot(10, 11))
+        );
+    }
 }
