@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public final class Booking {
 
     private final String userId;
@@ -20,5 +22,22 @@ public final class Booking {
 
     public TimeSlot getSlot() {
         return slot;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Booking)) {
+            return false;
+        }
+
+        Booking other = (Booking) obj;
+
+        return Objects.equals(userId, other.userId)
+            && Objects.equals(roomId, other.roomId)
+            && Objects.equals(slot, other.slot);
     }
 }
